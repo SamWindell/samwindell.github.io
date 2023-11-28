@@ -1,0 +1,15 @@
+ <?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+
+<channel>
+  <title>Sam Windell</title>
+  <link>https://samwindell.github.io</link>
+  <description>Personal Website</description>
+  <item>
+    <title>FrozenPlain's Origins</title>
+    <link>https://samwindell.github.io/posts/frozenplains-origin.html</link>
+    <description>How FrozenPlain started</description>
+  </item>
+</channel>
+
+</rss> 
