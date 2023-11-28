@@ -5,16 +5,19 @@ body {
     padding: 0;
     max-width: 800px;
     margin: auto;
+    padding: 0 8px;
+}
+
+nav {
+    margin-top: 8px;
 }
 
 a:link {
     color: #299bff;
-    background-color: transparent;
     text-decoration: none;
 }
 
 a:visited {
     color: #975fc7;
-    background-color: transparent;
     text-decoration: none;
 }

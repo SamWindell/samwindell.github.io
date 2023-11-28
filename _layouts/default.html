@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <header>
+        <nav><a href="/">Homepage</a></nav>
+    </header>
+
+    <hr />
+
+    <h1>{{ page.title }}</h1>
+    <section>
+        {{ content }}
+    </section>
+
+    <hr />
+
+    <footer>
+        <p>
+            <a href="mailto:info@frozenplain.com">Email</a>
+            |
+            <a href="https://github.com/samwindell">GitHub</a>
+            |
+            <a href="rss.xml">RSS</a> <sup>[1]</sup>
+        </p>
+        <p>
+            <sup>[1]</sup> Paste this link into your favorite RSS feed reader. Alternatively, you can receive when new
+            posts
+            are added
+            with a service such as <a href="https://feedrabbit.com/">Feedrabbit</a>.
+        </p>
+    </footer>
+</body>
+
+</html>
