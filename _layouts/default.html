@@ -10,33 +10,38 @@
 
 <body>
     <header>
-        <nav><a href="/">Homepage</a></nav>
+        <div class="content">
+            <nav>
+                <p><a href="/">Homepage</a></p>
+            </nav>
+        </div>
     </header>
 
-    <hr />
 
-    <h1>{{ page.title }}</h1>
-    <section>
-        {{ content }}
-    </section>
+    <article>
+        <div class="content">
+            <h1>{{ page.title }}</h1>
+            {{ content }}
+        </div>
+    </article>
 
-    <hr />
 
     <footer>
-        <p>
-            <a href="mailto:info@frozenplain.com">Email</a>
-            |
-            <a href="https://github.com/samwindell">GitHub</a>
-            |
-            <a href="rss.xml">RSS</a> <sup>[1]</sup>
-        </p>
-        <p>
-            <sup>[1]</sup> Paste this link into your favorite RSS feed reader. Alternatively, you can receive when new
-            posts
-            are added
-            with a service such as <a href="https://feedrabbit.com/">Feedrabbit</a>.
-        </p>
+        <div class="content">
+            <p>
+                <a href="mailto:info@frozenplain.com">Email</a>
+                |
+                <a href="https://github.com/samwindell">GitHub</a>
+                |
+                <a href="/feed.xml">RSS</a> <sup>[1]</sup>
+            </p>
+            <p>
+                <sup>[1]</sup> Paste this link into your favourite RSS feed reader. Alternatively, you can receive
+                emails when new posts are added using a service such as <a
+                    href="https://feedrabbit.com/">Feedrabbit</a>.
+            </p>
     </footer>
+    </div>
 </body>
 
 </html>

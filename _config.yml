@@ -1,0 +1,5 @@
+plugins:
+  - jekyll-feed
+name: "Sam Windell"
+description: "Blog about programming, music and more"
+url: "https://samwindell.github.io"
