@@ -51,3 +51,8 @@ hr {
     margin: 32px 0;
     color: var(--foreground-2);
 }
+
+pre {
+    padding: 6px;
+    background-color: var(--background-1)
+}
