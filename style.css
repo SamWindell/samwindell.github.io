@@ -1,6 +1,6 @@
 :root {
    --background-1: rgb(21, 21, 21);
-   --background-2: rgb(21, 21, 21);
+   --background-2: rgb(31, 31, 31);
    --foreground-1: rgb(163, 163, 163);
    --foreground-2: #5E5E5E;
    --foreground-3: rgb(229, 229, 229);
@@ -10,7 +10,7 @@
 
 body {
     font-family: "Gill Sans", sans-serif;;
-    background-color: var(--background-2);
+    background-color: var(--background-1);
     color: var(--foreground-1);
     display: flex;
     flex-direction: column;
@@ -45,11 +45,6 @@ a:visited {
     text-decoration: none;
 }
 
-header, footer {
-    background-color: var(--background-1);
-}
-
-
 article{ flex:1; }
 
 hr {
@@ -59,5 +54,12 @@ hr {
 
 pre {
     padding: 6px;
-    background-color: var(--background-1)
+    background-color: var(--background-2)
+}
+
+.avatar {
+    border-radius: 100%;
+    width: 150px;
+    height: 150px;
+    border: 3px solid var(--foreground-2);
 }
