@@ -1,11 +1,11 @@
 :root {
-   --background-1: rgb(21, 21, 21);
+   --background-1: rgb(32, 35, 39);
    --background-2: rgb(31, 31, 31);
    --foreground-1: rgb(163, 163, 163);
    --foreground-2: #5E5E5E;
    --foreground-3: rgb(229, 229, 229);
-   --highlight-1: #699bff;
-   --highlight-2: #8769ff;
+   --highlight-1: #688bd4;
+   --highlight-2: #405e9c;
 }
 
 body {
@@ -24,6 +24,10 @@ h1, h2, h3, h4, h5 {
     color: var(--foreground-3);
 }
 
+footer {
+    padding-bottom: 32px;
+}
+
 .content {
     padding: 0;
     max-width: 800px;
@@ -35,14 +39,14 @@ nav {
     margin-top: 8px;
 }
 
-a:link {
+a {
     color: var(--highlight-1);
     text-decoration: none;
 }
 
 a:visited {
-    color: var(--highlight-2);
-    text-decoration: none;
+    /* color: var(--highlight-2); */
+    text-decoration: underline;
 }
 
 article{ flex:1; }
@@ -62,4 +66,51 @@ pre {
     width: 150px;
     height: 150px;
     border: 3px solid var(--foreground-2);
+}
+
+.post-list {
+    margin: 20px auto;
+}
+
+.post {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0;
+}
+
+.post-title {
+    flex: 1;
+}
+
+.post-date {
+    flex: 1;
+    text-align: right;
+}
+
+i {
+  color: var(--foreground-3);
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+nav li {
+  float: left;
+}
+
+nav li a {
+  display: block;
+  color: var(--foreground-3);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+nav li a:hover {
+  background-color: #111;
 }

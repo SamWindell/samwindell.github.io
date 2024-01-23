@@ -1,13 +1,10 @@
 ---
-title: "Posts by Tag"
+title: "All Posts"
 layout: default
 ---
 
-{% for tag in site.tags %}
-<h3>{{ tag[0] }}</h3>
-
 <div class="post-list">
-    {% for post in tag[1] %}
+    {% for post in site.posts %}
     <div class="post">
         <div class="post-title">
             <a href="{{ post.url }}">{{ post.title }}</a>
@@ -16,5 +13,3 @@ layout: default
     </div>
     {% endfor %}
 </div>
-
-{% endfor %}

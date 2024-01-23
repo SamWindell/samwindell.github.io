@@ -6,16 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="/style.css">
+    <link href="/assets/css/fontawesome.all.min.css" rel="stylesheet">
 </head>
 
 <body>
     <header>
         <div class="content">
             <nav>
-                <p><a href="/">Homepage</a></p>
+                <ul>
+                    <li><a href="/">Homepage</a></li>
+                    <li><a href="/posts.html">Blog Posts</a></li>
+                    <li><a href="/tags.html">Tags</a></li>
+                </ul>
             </nav>
         </div>
-        <hr />
+        <hr style="margin-top:16px" />
     </header>
 
 
@@ -30,20 +35,13 @@
     <footer>
         <hr />
         <div class="content">
-            <p>
-                <a href="mailto:info@frozenplain.com">Email</a>
-                |
-                <a href="https://github.com/samwindell">GitHub</a>
-                |
-                <a href="/feed.xml">RSS</a> <sup>[1]</sup>
-            </p>
-            <p>
-                <sup>[1]</sup> Paste this link into your favourite RSS feed reader. Alternatively, you can receive
-                emails when new posts are added using a service such as <a
-                    href="https://feedrabbit.com/">Feedrabbit</a>.
-            </p>
+            <div style="text-align:center">
+                <a href="mailto:info@frozenplain.com"><i class="fa fa-envelope fa-xl"></i></a>
+                <a href="https://github.com/samwindell"><i class="fa-brands fa-github fa-xl"></i></a>
+                <a href="/feed.xml"><i class="fa-solid fa-rss fa-xl"></i></a>
+            </div>
+        </div>
     </footer>
-    </div>
 </body>
 
 </html>
