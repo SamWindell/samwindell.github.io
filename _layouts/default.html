@@ -7,6 +7,10 @@
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="/style.css">
     <link href="/assets/css/fontawesome.all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -14,9 +18,17 @@
         <div class="content">
             <nav>
                 <ul>
-                    <li><a href="/">Homepage</a></li>
-                    <li><a href="/posts.html">Blog Posts</a></li>
-                    <li><a href="/tags.html">Tags</a></li>
+                    {% for node in site.pages %}
+                    {% if page.url == node.url %}
+                    <li><a href="{{node.url}}" class="active">{{node.title}}</a></li>
+                    {% else %}
+                    <li><a href="{{node.url}}">{{node.title}}</a></li>
+                    {% endif %}
+                    {% endfor %}
+
+                    <!-- <li><a href="/">Homepage</a></li> -->
+                    <!-- <li><a href="/posts.html">Blog Posts</a></li> -->
+                    <!-- <li><a href="/tags.html">Tags</a></li> -->
                 </ul>
             </nav>
         </div>
@@ -35,10 +47,12 @@
     <footer>
         <hr />
         <div class="content">
-            <div style="text-align:center">
-                <a href="mailto:info@frozenplain.com"><i class="fa fa-envelope fa-xl"></i></a>
-                <a href="https://github.com/samwindell"><i class="fa-brands fa-github fa-xl"></i></a>
-                <a href="/feed.xml"><i class="fa-solid fa-rss fa-xl"></i></a>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="mailto:info@frozenplain.com"><i class="fa fa-envelope fa-xl"></i></a></li>
+                    <li><a href="https://github.com/samwindell"><i class="fa-brands fa-github fa-xl"></i></a></li>
+                    <li><a href="/feed.xml"><i class="fa-solid fa-rss fa-xl"></i></a></li>
+                </ul>
             </div>
         </div>
     </footer>

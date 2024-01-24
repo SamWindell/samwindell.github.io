@@ -9,7 +9,7 @@
 }
 
 body {
-    font-family: "Gill Sans", sans-serif;;
+    font-family: "Gill Sans", "Gill Sans MT", "Calibri", sans-serif;;
     background-color: var(--background-1);
     color: var(--foreground-1);
     display: flex;
@@ -22,7 +22,14 @@ body {
 
 h1, h2, h3, h4, h5 {
     color: var(--foreground-3);
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
 }
+
+h1 { font-size: 22pt; }
+h2 { font-size: 20pt; }
 
 footer {
     padding-bottom: 32px;
@@ -46,7 +53,6 @@ a {
 
 a:visited {
     /* color: var(--highlight-2); */
-    text-decoration: underline;
 }
 
 article{ flex:1; }
@@ -65,7 +71,7 @@ pre {
     border-radius: 100%;
     width: 150px;
     height: 150px;
-    border: 3px solid var(--foreground-2);
+    border: 3px solid var(--foreground-1);
 }
 
 .post-list {
@@ -87,10 +93,6 @@ pre {
     text-align: right;
 }
 
-i {
-  color: var(--foreground-3);
-}
-
 nav ul {
   list-style-type: none;
   margin: 0;
@@ -106,11 +108,44 @@ nav li a {
   display: block;
   color: var(--foreground-3);
   text-align: center;
-  padding: 14px 16px;
+  padding-right: 22px;
+  padding-top: 16px;
   text-decoration: none;
 }
 
-/* Change the link color to #111 (black) on hover */
-nav li a:hover {
-  background-color: #111;
+nav li a.active {
+  font-weight: bold;
 }
+
+nav li a:hover {
+    color: var(--highlight-1);
+}
+
+.footer-links ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.footer-links li {
+  float: left;
+}
+
+.footer-links li a {
+  display: block;
+  color: var(--foreground-3);
+  text-align: center;
+  padding-right: 22px;
+  padding-top: 4px;
+  text-decoration: none;
+}
+
+.footer-links li a.active {
+  font-weight: bold;
+}
+
+.footer-links li a:hover {
+    color: var(--highlight-1);
+}
+

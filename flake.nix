@@ -15,6 +15,9 @@
         devShells.default = pkgs.mkShell {
           buildInputs = [
             pkgs.bundler
+            (pkgs.writeShellScriptBin "run" ''
+              bundle exec jekyll serve --open-url
+            '')
           ];
         };
       });
