@@ -1,3 +1,5 @@
+@import "syntax-theme.css";
+
 :root {
    --background-1: rgb(32, 35, 39);
    --background-2: rgb(31, 31, 31);

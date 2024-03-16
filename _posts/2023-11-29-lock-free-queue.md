@@ -13,8 +13,8 @@ Let's start with an overview of things we might want to consider first:
 
 The simplest design that I've found for a SPSC queue is from the paper ["Correct and Efficient Bounded FIFO Queues by Nhat Minh Lê, Adrien Guatto, Albert Cohen, Antoniu Pop"](https://inria.hal.science/hal-00862450/document). It includes an implementation using C11 atomics of an improved version of an Lamport's queue (from an older paper). It also proposes a faster version called WeakRB that might be worth looking at. For now, let's just take a look at the improved Lamport's queue because it's incredibly simple. The underlying data structure is fixed-size ring-buffer.
 
-<pre>
-<code>atomic_size_t front;
+```cpp
+atomic_size_t front;
 size_t pfront;
 atomic_size_t back;
 size_t cback;
@@ -44,8 +44,8 @@ static inline bool pop(T *elem) {
     *elem = data[b];
     atomic_store_explicit(&front, (f + 1) % SIZE, memory_order_release);
     return true;
-}</code>
-</pre>
+}
+```
 
 It would be very simple to translate this into C++11 using std::atomic if needed: C11 and C++ use the same atomics model.
 
@@ -57,6 +57,7 @@ If multiple-producers or multiple-consumers are needed I would suggest that the 
 - [FreeBSD buf_rung.h](https://svnweb.freebsd.org/base/release/12.2.0/sys/sys/buf_ring.h?revision=367086&view=markup)
 - [The Book of Gehn - Lock-Free Queue](https://book-of-gehn.github.io/articles/2020/03/22/Lock-Free-Queue-Part-I.html)
 - [Loki lock-free queue library](https://github.com/eldipa/loki)
+- [Correct and Efficient Work-Stealing for Weak Memory Models](https://fzn.fr/readings/ppopp13.pdf)
 
 On a slightly unrelated note, here's a link to a neat-trick regarding read/write indexes of a ring buffer: [Juho Snellman's Weblog - I've been writing ring buffers wrong all these years](https://www.snellman.net/blog/archive/2016-12-13-ring-buffers).
 
