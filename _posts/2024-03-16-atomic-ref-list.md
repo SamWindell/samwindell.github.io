@@ -4,6 +4,10 @@ layout: post
 tags: programming c/c++
 ---
 
+_This blog post shows a point-in-time. Mirage is now known as Floe, and the source code for (including this atomic ref-list) is available on [Floe's Github](https://github.com/Floe-Synth/Floe)_
+
+---
+
 For [Mirage](https://frozenplain.com/mirage), I need to load sample-library configuration files from disk, including lots of audio files which need decoding into memory for other threads to use. A [new update](https://frozenplain.com/code-your-own-libraries-devlog-5/) that I'm working on makes this a little trickier because it introduces the requirement that the set of audio files can change on the fly; changes to the Lua configuration script should cause Mirage to automatically apply them.
 
 This is a problem of sharing memory across threads. The requirements are as follows:
@@ -39,10 +43,10 @@ Back to the implementation of this atomic linked list. Next, let's define what t
 // get around the issues of using-after-destructor, we use weak reference counting involving a bit flag.
 struct Node {
     // reader
-    ValueType *TryRetain() {
-        const auto r = reader_uses.FetchAdd(1, MemoryOrder::Relaxed);
+    [[nodiscard]] ValueType* TryRetain() {
+        auto const r = reader_uses.FetchAdd(1, MemoryOrder::Relaxed);
         if (r & k_dead_bit) [[unlikely]] {
-            reader_uses.FetchSub(1, MemoryOrder::Relaxed);
+            reader_uses.FetchSub(1, MemoryOrder::Release);
             return nullptr;
         }
         return &value;
@@ -50,7 +54,7 @@ struct Node {
 
     // reader, if TryRetain() returned non-null
     void Release() {
-        const auto r = reader_uses.FetchSub(1, MemoryOrder::Relaxed);
+        auto const r = reader_uses.FetchSub(1, MemoryOrder::Release);
         ASSERT(r != 0);
     }
 
@@ -96,7 +100,7 @@ struct Iterator {
 // reader or writer
 // If you are the reader the values should be considered weak references; you MUST call TryRetain (and
 // afterwards Release) on the object before using it.
-Iterator begin() const { return Iterator(live_list.Load(MemoryOrder::Relaxed), nullptr); }
+Iterator begin() const { return Iterator(live_list.Load(MemoryOrder::Acquire), nullptr); }
 Iterator end() const { return Iterator(nullptr, nullptr); }
 ```
 
@@ -104,34 +108,34 @@ And the features that the writer-thread can use:
 
 ```cpp
 // writer, call placement-new on node->value
-Node *AllocateUninitialised() {
+Node* AllocateUninitialised() {
     if (free_list) {
         auto node = free_list;
         free_list = free_list->writer_next;
-        ASSERT(node->reader_uses.Load() & Node::k_dead_bit);
         return node;
     }
 
     auto node = arena.NewUninitialised<Node>();
-    node->reader_uses.Raw() = 0;
+    node->reader_uses.raw = 0;
+    node->writer_next = nullptr;
     return node;
 }
 
 // writer, only pass a node just acquired from AllocateUnitialised and placement-new'ed
-void DiscardAllocatedInitialised(Node *node) {
+void DiscardAllocatedInitialised(Node* node) {
     node->value.~ValueType();
     node->writer_next = free_list;
     free_list = node;
 }
 
 // writer, node from AllocateUninitalised
-void Insert(Node *node) {
+void Insert(Node* node) {
     // insert so the memory is sequential for better cache locality
-    Node *insert_after {};
+    Node* insert_after {};
     {
-        Node *prev {};
+        Node* prev {};
         for (auto n = live_list.Load(MemoryOrder::Relaxed); n != nullptr;
-                n = n->next.Load(MemoryOrder::Relaxed)) {
+             n = n->next.Load(MemoryOrder::Relaxed)) {
             if (n > node) {
                 insert_after = prev;
                 break;
@@ -142,23 +146,24 @@ void Insert(Node *node) {
 
     // put it into the live list
     if (insert_after) {
-        node->next.Store(insert_after->next.Load());
-        insert_after->next.Store(node);
+        node->next.Store(insert_after->next.Load(MemoryOrder::Relaxed), MemoryOrder::Relaxed);
+        insert_after->next.Store(node, MemoryOrder::Release);
+        ASSERT(node > insert_after);
     } else {
-        node->next.Store(live_list.Load());
-        live_list.Store(node);
+        node->next.Store(live_list.Load(MemoryOrder::Relaxed), MemoryOrder::Relaxed);
+        live_list.Store(node, MemoryOrder::Release);
     }
 
-    // signal that the reader can now use this node
-    node->reader_uses.FetchAnd(~Node::k_dead_bit);
+    // signal that the readers can now use this node
+    node->reader_uses.FetchAnd(~Node::k_dead_bit, MemoryOrder::AcquireRelease);
 }
 
 // writer, returns next iterator (i.e. instead of ++it in a loop)
 Iterator Remove(Iterator iterator) {
-    if constexpr (DEBUG_CHECKS_ENABLED) {
+    if constexpr (RUNTIME_SAFETY_CHECKS_ON) {
         bool found = false;
         for (auto n = live_list.Load(MemoryOrder::Relaxed); n != nullptr;
-                n = n->next.Load(MemoryOrder::Relaxed)) {
+             n = n->next.Load(MemoryOrder::Relaxed)) {
             if (n == iterator.node) {
                 found = true;
                 break;
@@ -169,25 +174,29 @@ Iterator Remove(Iterator iterator) {
 
     // remove it from the live_list
     if (iterator.prev)
-        iterator.prev->next.Store(iterator.node->next.Load());
+        iterator.prev->next.Store(iterator.node->next.Load(MemoryOrder::Relaxed), MemoryOrder::Release);
     else
-        live_list.Store(iterator.node->next.Load());
+        live_list.Store(iterator.node->next.Load(MemoryOrder::Relaxed), MemoryOrder::Release);
 
     // add it to the dead list. we use a separate 'next' variable for this because the reader still might
-    // be using the node and it needs to know how to correctly iterate through the list list rather than
+    // be using the node and it needs to know how to correctly iterate through the list rather than
     // suddendly being redirecting into iterating the dead list
     iterator.node->writer_next = dead_list;
     dead_list = iterator.node;
 
-    // signal that the reader should no longer user this node
-    iterator.node->reader_uses.FetchAdd(Node::k_dead_bit);
+    // signal that the readers should no longer use this node
+    // NOTE: we use the ADD operation here instead of bitwise-OR because it's probably faster on x86: the
+    // XADD instruction vs the CMPXCHG instruction. This is fine because we know that the dead bit isn't
+    // already set and is a power-of-2 and so doing and ADD is the same as doing an OR.
+    auto const u = iterator.node->reader_uses.FetchAdd(Node::k_dead_bit, MemoryOrder::AcquireRelease);
+    ASSERT((u & Node::k_dead_bit) == 0, "already dead");
 
-    return Iterator {.node = iterator.node->next.Load(), .prev = iterator.prev};
+    return Iterator {.node = iterator.node->next.Load(MemoryOrder::Relaxed), .prev = iterator.prev};
 }
 
 // writer
-void Remove(Node *node) {
-    Node *previous {};
+void Remove(Node* node) {
+    Node* previous {};
     for (auto it = begin(); it != end(); ++it) {
         if (it.node == node) break;
         previous = it.node;
@@ -203,13 +212,13 @@ void RemoveAll() {
 
 // writer, call this regularly
 void DeleteRemovedAndUnreferenced() {
-    Node *previous = nullptr;
+    Node* previous = nullptr;
     for (auto i = dead_list; i != nullptr;) {
         ASSERT(i->writer_next != i);
         ASSERT(previous != i);
         if (previous) ASSERT(previous != i->writer_next);
 
-        if (i->reader_uses.Load() == Node::k_dead_bit) {
+        if (i->reader_uses.Load(MemoryOrder::Acquire) == Node::k_dead_bit) {
             if (!previous)
                 dead_list = i->writer_next;
             else
