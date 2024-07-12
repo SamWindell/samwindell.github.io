@@ -7,9 +7,9 @@ layout: default
 
 Hi, welcome to my website. I'm a software developer from the UK. My main project and work is [FrozenPlain](https://frozenplain.com).
 
-I use this place to share things that I think interesting. It's also a collection of my evolving ideas: my blog posts here aren't necessarily immutable, final publications - they can change.
+I use this place to share things that I think are interesting. It's also a collection of my evolving ideas: my blog posts here aren't necessarily immutable, final publications.
 
-My interests include low-level software development, music, sound-design, ancient philosophy and self-improvement. I care about the quality of my work and want to make things that are truly useful - beyond just the surface level.
+My interests include low-level software development, music, sound-design and ancient philosophy. I believe in doing things thoughtfully, ethically and building things that last.
 
 ---
 
