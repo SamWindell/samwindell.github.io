@@ -1,7 +1,7 @@
 ---
 title: Atomic lock-free linked list
 layout: post
-tags: programming c/c++
+tags: programming
 ---
 
 _This blog post shows a point-in-time. Mirage is now known as Floe, and the source code for (including this atomic ref-list) is available on [Floe's Github](https://github.com/Floe-Synth/Floe)_

@@ -1,7 +1,7 @@
 ---
 title: Lock-free FIF0 Queues
 layout: post
-tags: programming c/c++
+tags: programming
 ---
 
 I've recently been using lock-free FIFO (first-in first-out) queues quite a lot. I thought I'd share some of what I've learnt in case it can give someone else a head-start. 
