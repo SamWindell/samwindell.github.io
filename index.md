@@ -5,11 +5,9 @@ layout: default
 
 <img class="avatar" src="/assets/images/me.webp">
 
-Hi, welcome to my website. I'm a software developer from the UK. My main project and work is [FrozenPlain](https://frozenplain.com).
+Hi, welcome to my website. I'm a software developer from the UK. My main projects are [FrozenPlain](https://frozenplain.com) and [Floe](https://floe.audio).
 
-I use this place to share things that I think are interesting. It's also a collection of my evolving ideas: my posts here aren't necessarily immutable, final publications.
-
-My interests include low-level software development, music, sound-design and ancient philosophy. I believe in doing things thoughtfully, ethically and building things that last.
+I occasionally write about coding, music and philosophy. I believe in doing working thoughtfully, ethically and building things that last.
 
 ---
 
