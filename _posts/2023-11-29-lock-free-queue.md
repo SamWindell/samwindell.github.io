@@ -54,7 +54,7 @@ I've found this algorithm pop up a few times in the wild:
 - [Crown game engine](https://github.com/crownengine/crown/blob/9a555758e2ddf4665efb2e120fcb8a5b9eb72859/src/core/thread/spsc_queue.inl)
 
 If multiple-producers or multiple-consumers are needed I would suggest that the first thing to consider would be to use a mutex to ensure that only one thread can push or pop simultaneously. [Have a look at how the Crown game engine does this](https://github.com/crownengine/crown/blob/master/src/core/thread/mpsc_queue.inl). However, mutexes introduce the potential of calling into the kernal and performing a proper block operation; though it's worth remembering that modern mutex implementations can often avoid doing this - they perform atomic operations in user-space before deciding if a syscall is needed (see [glibc pthread](https://github.com/lattera/glibc/blob/master/nptl/pthread_mutex_lock.c#L168) for example). That being said, any potential for blocking might not be acceptable if there you have very strict real-time requirements. If you to go down the lock-free MPMC route, have a look at these links:
-- [FreeBSD buf_rung.h](https://svnweb.freebsd.org/base/release/12.2.0/sys/sys/buf_ring.h?revision=367086&view=markup)
+- [FreeBSD buf_ring.h](https://svnweb.freebsd.org/base/release/12.2.0/sys/sys/buf_ring.h?revision=367086&view=markup)
 - [The Book of Gehn - Lock-Free Queue](https://book-of-gehn.github.io/articles/2020/03/22/Lock-Free-Queue-Part-I.html)
 - [Loki lock-free queue library](https://github.com/eldipa/loki)
 - [Correct and Efficient Work-Stealing for Weak Memory Models](https://fzn.fr/readings/ppopp13.pdf)
