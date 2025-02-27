@@ -7,14 +7,14 @@ layout: default
 
 Hi, welcome to my website. I'm a software developer from the UK. My main projects are [FrozenPlain](https://frozenplain.com) and [Floe](https://floe.audio).
 
-I occasionally write about coding, music and philosophy. I believe in doing working thoughtfully, ethically and building things that last.
+I occasionally write about coding, music and philosophy. I believe in working thoughtfully, ethically and building things that last.
 
 ---
 
 ## Projects
 
 ### FrozenPlain
-[FrozenPlain](https://frozenplain.com) is my main work. I make [sample-based software synthesisers](https://en.wikipedia.org/wiki/Sample-based_synthesis) and audio plugins: tools for composers and producers to make music.
+[FrozenPlain](https://frozenplain.com) is my main work. I make sample libraries and audio plugins: tools for composers and producers to make music.
 
 ### Floe
 [Floe](https://github.com/Floe-Synth/Floe) is a free, GPL licenced, sampler plugin that I'm developing. It powers FrozenPlain's sample libraries.
