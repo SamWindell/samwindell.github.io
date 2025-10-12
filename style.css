@@ -11,7 +11,9 @@
 }
 
 body {
-    font-family: "Gill Sans", "Gill Sans MT", "Calibri", sans-serif;;
+    font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+    font-weight: normal;
+    font-size: 18px;
     background-color: var(--background-1);
     color: var(--foreground-1);
     display: flex;
@@ -19,29 +21,48 @@ body {
     min-height: 100vh;
     padding: 0;
     margin: 0;
-    line-height: 1.35;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5 {
     color: var(--foreground-3);
-    font-family: "Plus Jakarta Sans", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 700;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 600;
     font-style: normal;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin-top: 2em;
+    margin-bottom: 0.75em;
 }
 
-h1 { font-size: 22pt; }
-h2 { font-size: 20pt; }
+h1 { 
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    margin-top: 1em;
+}
+h2 { 
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+}
+h3 { 
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+}
+h4 { 
+    font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+}
+h5 { 
+    font-size: clamp(1rem, 2vw, 1.125rem);
+}
 
 footer {
     padding-bottom: 32px;
 }
 
 .content {
-    padding: 0;
-    max-width: 800px;
+    max-width: 65ch;
     margin: auto;
-    padding: 0 8px;
+    padding: 0 clamp(1rem, 4vw, 2rem);
 }
 
 nav {
@@ -69,11 +90,45 @@ pre {
     background-color: var(--background-2)
 }
 
+/* About section at bottom of homepage */
+.about-section {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.about-text {
+    flex: 1;
+}
+
 .avatar {
     border-radius: 100%;
-    width: 150px;
-    height: 150px;
-    border: 3px solid var(--foreground-1);
+    width: 140px;
+    height: 140px;
+    border: 2px solid var(--foreground-2);
+    flex-shrink: 0;
+    transition: border-color 0.2s ease;
+}
+
+.avatar:hover {
+    border-color: var(--highlight-1);
+}
+
+/* Mobile responsiveness for about section */
+@media (max-width: 600px) {
+    .about-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1.5rem;
+    }
+    
+    .avatar {
+        width: 120px;
+        height: 120px;
+        order: -1;
+    }
 }
 
 .post-list {
@@ -149,5 +204,134 @@ nav li a:hover {
 
 .footer-links li a:hover {
     color: var(--highlight-1);
+}
+
+/* Modern responsive typography and spacing */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+        line-height: 1.65;
+    }
+    
+    nav li a {
+        padding-right: 16px;
+        padding-top: 12px;
+        font-size: 0.9rem;
+    }
+    
+    .footer-links li a {
+        padding-right: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 15px;
+    }
+    
+    nav li a {
+        padding-right: 12px;
+        padding-top: 8px;
+        font-size: 0.85rem;
+    }
+    
+    .footer-links li a {
+        padding-right: 12px;
+    }
+}
+
+/* Enhanced paragraph and content styling */
+p {
+    margin-bottom: 1.5em;
+    max-width: 100%;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+/* Improve code blocks */
+pre {
+    padding: 1rem;
+    background-color: var(--background-2);
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
+code {
+    background-color: var(--background-2);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+}
+
+/* Enhanced list styling */
+ul, ol {
+    margin-bottom: 1.5em;
+    padding-left: 1.5em;
+}
+
+li {
+    margin-bottom: 0.5em;
+    line-height: 1.6;
+}
+
+/* Improved blockquote styling */
+blockquote {
+    border-left: 4px solid var(--highlight-1);
+    margin: 1.5em 0;
+    padding: 0.5em 0 0.5em 1.5em;
+    font-style: italic;
+    color: var(--foreground-2);
+}
+
+/* Text selection styling */
+::selection {
+    background-color: var(--highlight-1);
+    color: var(--background-1);
+}
+
+::-moz-selection {
+    background-color: var(--highlight-1);
+    color: var(--background-1);
+}
+
+/* Focus states for accessibility */
+a:focus {
+    outline: 2px solid var(--highlight-1);
+    outline-offset: 2px;
+}
+
+/* Improved table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5em 0;
+}
+
+th, td {
+    padding: 0.75em;
+    text-align: left;
+    border-bottom: 1px solid var(--foreground-2);
+}
+
+th {
+    font-weight: 600;
+    color: var(--foreground-3);
+}
+
+/* Image responsiveness */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5em 0;
 }
 

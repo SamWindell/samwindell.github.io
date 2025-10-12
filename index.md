@@ -3,21 +3,40 @@ title: Sam Windell
 layout: default
 ---
 
-<img class="avatar" src="/assets/images/me.webp">
+## Welcome
 
-Hi, welcome to my website. I'm a software developer from the UK. My main projects are [FrozenPlain](https://frozenplain.com) and [Floe](https://floe.audio).
-
-I occasionally write about coding, music and philosophy. I believe in working thoughtfully, ethically and building things that last.
+This is my corner of the web where I share things I find interesting — technical insights from building audio software, thoughts on craft and values, and the occasional personal reflection. If you've found my work and want to know more about the person behind it, or if you're exploring similar ideas, this is where we might connect.
 
 ---
 
 ## Projects
 
 ### FrozenPlain
-[FrozenPlain](https://frozenplain.com) is my main work. I make sample libraries and audio plugins: tools for composers and producers to make music.
+[FrozenPlain](https://frozenplain.com) is my one-person sample library company. I create cinematic and ambient instruments for composers, handling everything from sound design and instrument sampling to web development, marketing, and support. I collaborate with musicians and sound designers, but also record and process many instruments myself.
 
 ### Floe
-[Floe](https://github.com/Floe-Synth/Floe) is a free, GPL licenced, sampler plugin that I'm developing. It powers FrozenPlain's sample libraries.
+[Floe](https://github.com/Floe-Synth/Floe) is the open-source sample library platform that powers FrozenPlain's instruments. Built from scratch in C++ for Windows, Linux, and macOS, it's designed as a streamlined alternative to complex samplers like Kontakt. Floe focuses on familiar, well-established features for finding, performing, and transforming sample-based instruments, with comprehensive search, tagging, and sound-shaping tools all accessible through a consistent interface.
 
 ### Signet
-[Signet](https://github.com/samwindell/signet) is a free open-source command-line tool for bulk-editing audio files. It's very useful for sample-library developers who often work with hundreds of audio files that need to processed in a similar fashion so they can be effectively used in a sampler.
+[Signet](https://github.com/samwindell/signet) is a free open-source command-line tool for bulk-editing audio files. It's particularly useful for sample library developers who need to process hundreds of audio files in consistent ways — normalizing levels, applying fades, converting formats, and preparing samples for use in samplers.
+
+## Minor Projects
+
+### NoiseRF
+[NoiseRF](https://github.com/samwindell/NoiseRF) is a free open-source noise reduction plugin - a reformatting to CLAP and bug-fix fork of Luciano Dato's version, converted to CLAP format with Zig build system and various bug fixes. I created this version because I wanted high-quality noise reduction in Linux DAWs and preferred the CLAP API.
+
+### CLAP-wrapper
+[CLAP-wrapper](https://github.com/free-audio/clap-wrapper) is another free open-source project, it wraps CLAP plugins into other formats (VST3, AU, standalone). I'm sometimes involved in contributions to this project.
+
+---
+
+## About Me
+
+<div class="about-section">
+<div class="about-text">
+<p>I'm Sam Windell, a software developer from the UK specializing in audio tools. I build <a href="https://frozenplain.com">FrozenPlain</a> — sample libraries and plugins for composers — and <a href="https://floe.audio">Floe</a>, the open-source sampler that powers them.</p>
+
+<p>I care about making tools that respect their users: software that's thoughtfully designed, performs well, and doesn't get in the way of creativity. My professional experience lies mostly in cross-platform native application development (audio plugins) in C++, with a strong interest in Zig and C.</p>
+</div>
+<img class="avatar" src="/assets/images/me.webp" alt="Sam Windell">
+</div>
