@@ -1,9 +1,7 @@
 ---
-title: Sam Windell
+title: Sam Windell's Website
 layout: default
 ---
-
-## Welcome
 
 This is my corner of the web where I share things I find interesting — technical insights from building audio software, thoughts on craft and values, and the occasional personal reflection. If you've found my work and want to know more about the person behind it, or if you're exploring similar ideas, this is where we might connect.
 
@@ -27,6 +25,13 @@ This is my corner of the web where I share things I find interesting — technic
 
 ### CLAP-wrapper
 [CLAP-wrapper](https://github.com/free-audio/clap-wrapper) is another free open-source project, it wraps CLAP plugins into other formats (VST3, AU, standalone). I'm sometimes involved in contributions to this project.
+
+### Workshop
+[Workshop](https://github.com/samwindell/workshop) is my personal config for my Linux (NixOS), macOS, and WSL machines configured with Nix. Highlights include Neovim and a Hyprland setup. Not really intended for public use, but available for those interested.
+
+### Open-source highlights
+- [WAV file format metadata parser/writer in C](https://github.com/mackron/dr_libs/pull/170) for dr_libs.
+- [Preprocessors for Kontakt scripting language](https://github.com/nojanath/SublimeKSP/blob/master/compiler/preprocessor_plugins.py) for SublimeKSP (2016).
 
 ---
 

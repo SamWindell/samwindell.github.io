@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ page.title }}</title>
+    <link rel="icon" href="{{ '/assets/images/favicon.svg' | relative_url }}" type="image/svg+xml">
     <link rel="icon" href="{{ '/assets/images/favicon.png' | relative_url }}" type="image/png">
     <link rel="stylesheet" href="/style.css">
     <link href="/assets/css/fontawesome.all.min.css" rel="stylesheet">
@@ -21,6 +22,9 @@
     <header>
         <div class="content">
             <nav>
+                <a href="/" class="favicon-link">
+                    <img src="{{ '/assets/images/favicon.svg' | relative_url }}" alt="Home" class="favicon-nav">
+                </a>
                 <ul>
                     {% for node in site.pages %}
                     {% if page.url == node.url %}
