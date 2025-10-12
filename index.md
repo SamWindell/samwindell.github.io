@@ -15,7 +15,7 @@ This is my corner of the web where I share things I find interesting — technic
 [FrozenPlain](https://frozenplain.com) is my one-person sample library company. I create cinematic and ambient instruments for composers, handling everything from sound design and instrument sampling to web development, marketing, and support. I collaborate with musicians and sound designers, but also record and process many instruments myself.
 
 ### Floe
-[Floe](https://github.com/Floe-Synth/Floe) is the open-source sample library platform that powers FrozenPlain's instruments. Built from scratch in C++ for Windows, Linux, and macOS, it's designed as a streamlined alternative to complex samplers like Kontakt. Floe focuses on familiar, well-established features for finding, performing, and transforming sample-based instruments, with comprehensive search, tagging, and sound-shaping tools all accessible through a consistent interface.
+[Floe](https://github.com/Floe-Synth/Floe) is the open-source sample library platform that powers FrozenPlain's instruments. Built from scratch in C++ for Windows, Linux, and macOS, it's designed as a streamlined player and sample-based synth. Floe focuses on familiar, well-established features for finding, performing, and transforming sample-based instruments, with comprehensive search, tagging, and sound-shaping tools all accessible through a consistent interface.
 
 ### Signet
 [Signet](https://github.com/samwindell/signet) is a free open-source command-line tool for bulk-editing audio files. It's particularly useful for sample library developers who need to process hundreds of audio files in consistent ways — normalizing levels, applying fades, converting formats, and preparing samples for use in samplers.
@@ -34,7 +34,7 @@ This is my corner of the web where I share things I find interesting — technic
 
 <div class="about-section">
 <div class="about-text">
-<p>I'm Sam Windell, a software developer from the UK specializing in audio tools. I build <a href="https://frozenplain.com">FrozenPlain</a> — sample libraries and plugins for composers — and <a href="https://floe.audio">Floe</a>, the open-source sampler that powers them.</p>
+<p>I'm Sam Windell, a software developer from the UK specializing in audio tools.</p>
 
 <p>I care about making tools that respect their users: software that's thoughtfully designed, performs well, and doesn't get in the way of creativity. My professional experience lies mostly in cross-platform native application development (audio plugins) in C++, with a strong interest in Zig and C.</p>
 </div>
