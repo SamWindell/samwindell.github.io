@@ -13,7 +13,7 @@ This is my corner of the web where I share things I find interesting — technic
 
 <p>I care about making tools that respect their users: software that's thoughtfully designed, performs well, and doesn't get in the way of creativity. My professional experience lies mostly in cross-platform native application development (audio plugins) in C++, with a strong interest in Zig and C.</p>
 </div>
-<img class="avatar" src="/assets/images/me.webp" alt="Sam Windell">
+<img class="avatar" src="/assets/images/sam.jpg" alt="Sam Windell">
 </div>
 
 ---
