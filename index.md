@@ -9,7 +9,7 @@ This is my corner of the web where I share things I find interesting — technic
 
 <div class="about-section">
 <div class="about-text">
-<p>I'm Sam Windell, a software developer from the UK specializing in audio tools.</p>
+<p>I'm Sam Windell, a software developer from the UK specialising in audio tools.</p>
 
 <p>I care about making tools that respect their users: software that's thoughtfully designed, performs well, and doesn't get in the way of creativity. My professional experience lies mostly in cross-platform native application development (audio plugins) in C++, with a strong interest in Zig and C.</p>
 </div>
