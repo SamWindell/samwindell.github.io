@@ -3,7 +3,7 @@ title: Sam Windell's Website
 layout: default
 ---
 
-This is my corner of the web where I share things I find interesting — technical insights from building audio software, thoughts on craft and values, and the occasional personal reflection. If you've found my work and want to know more about the person behind it, or if you're exploring similar ideas, this is where we might connect.
+I don't really use social media, as an alternative I've made this site to share my projects and occasionally write about things that I find interesting — technical insights from building audio software, thoughts on craft and values, and the sometimes a personal reflection. If you've found my work and want to know more about the person behind it, or if you're exploring similar ideas, this is where we might connect.
 
 ## About Me
 
